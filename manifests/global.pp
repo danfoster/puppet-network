@@ -67,7 +67,8 @@ class network::global (
   $nisdomain      = undef,
   $vlan           = undef,
   $ipv6networking = false,
-  $nozeroconf     = undef
+  $nozeroconf     = undef,
+  $notifyservice  = true
 ) {
   # Validate our data
   if $gateway {
@@ -120,6 +121,8 @@ class network::global (
     group   => 'root',
     path    => '/etc/sysconfig/network',
     content => template('network/network.erb'),
-    notify  => Service['network'],
+    if ($::network::globals::notifyservice) {
+      notify  => Service['network'],
+    }
   }
 } # class global
