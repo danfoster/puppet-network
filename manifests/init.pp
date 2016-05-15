@@ -40,8 +40,6 @@ class network (
     provider   => 'redhat',
   }
 
-  notify {"notify: ${::network::global::notifylist} ":}
-
 } # class network
 
 # == Definition: network_if_base
