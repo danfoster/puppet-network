@@ -92,7 +92,7 @@ class network::global (
   if ($notifyservice) {
     $notifylist =  Service['network']
   } else {
-    $notifylist = ""
+    $notifylist = undef
   }
 
   include '::network'
