@@ -128,7 +128,6 @@ class network::global (
     group   => 'root',
     path    => '/etc/sysconfig/network',
     content => template('network/network.erb'),
-    notify  => $notifylist
-    }
+    notify  => $notifylist,
   }
 } # class global
