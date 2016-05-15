@@ -201,6 +201,6 @@ define network_if_base (
     group   => 'root',
     path    => "/etc/sysconfig/network-scripts/ifcfg-${interface}",
     content => $iftemplate,
-    notify  => Service['network'],
+    notify  => $::network::global::notifylist,
   }
 } # define network_if_base
