@@ -23,7 +23,6 @@
 # Copyright (C) 2011 Mike Arnold, unless otherwise noted.
 #
 class network (
-  $servicenoop = 'false'
 ) {
   # Only run on RedHat derived systems.
   case $::osfamily {
@@ -39,8 +38,10 @@ class network (
     hasrestart => true,
     hasstatus  => true,
     provider   => 'redhat',
-    noop       => $servicenoop
   }
+
+  notify {"notify: ${::network::global::notifylist} ":}
+
 } # class network
 
 # == Definition: network_if_base
