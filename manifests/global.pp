@@ -88,6 +88,13 @@ class network::global (
 
   validate_bool($ipv6networking)
 
+  validate_bool($notifyservice)
+  if ($notifyservice) {
+    $notifylist =  Service['network']
+  } else {
+    $notifylist = ""
+  }
+
   include '::network'
 
   case $::operatingsystem {
@@ -121,8 +128,7 @@ class network::global (
     group   => 'root',
     path    => '/etc/sysconfig/network',
     content => template('network/network.erb'),
-    if ($::network::globals::notifyservice) {
-      notify  => Service['network'],
+    notify  => $notifylist
     }
   }
 } # class global
