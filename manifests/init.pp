@@ -22,7 +22,9 @@
 #
 # Copyright (C) 2011 Mike Arnold, unless otherwise noted.
 #
-class network {
+class network (
+  $servicenoop = 'false'
+) {
   # Only run on RedHat derived systems.
   case $::osfamily {
     'RedHat': { }
@@ -37,6 +39,7 @@ class network {
     hasrestart => true,
     hasstatus  => true,
     provider   => 'redhat',
+    noop       => $servicenoop
   }
 } # class network
 
